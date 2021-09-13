@@ -4,7 +4,8 @@ from product.models import Product, Category
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    pass
+    list_display = ['name', 'category', 'stock', 'price', ]
+    list_editable = ['stock', ]
 
 
 @admin.register(Category)
