@@ -6,7 +6,7 @@ from product.models import Product
 class Order(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.RESTRICT)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    count = models.PositiveIntegerField()
+    stock = models.PositiveIntegerField()
 
     AVAILABLE = 'AVAILABLE'
     UNAVAILABLE = 'UNAVAILABLE'
