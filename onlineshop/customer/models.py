@@ -5,6 +5,7 @@ from phonenumber_field.modelfields import PhoneNumberField
 class Customer(models.Model):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
+    email = models.EmailField(max_length=100, blank=True)
     phone = PhoneNumberField(null=False, blank=False, unique=True)
     address = models.TextField(max_length=400)
 
