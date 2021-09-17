@@ -10,3 +10,11 @@ class Customer(models.Model):
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
+
+
+class Discount(models.Model):
+    pass
+
+
+class Cart(models.Model):
+    pass
