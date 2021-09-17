@@ -12,7 +12,7 @@ class Product(models.Model):
     name = models.CharField(max_length=80)
     price = models.PositiveIntegerField()
     description = models.TextField()
-    photo = models.ImageField(null=True, blank=True)
+    photo = models.ImageField(upload_to='./product/media', null=True, blank=True)
     stock = models.SmallIntegerField()
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
 

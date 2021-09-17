@@ -4,6 +4,10 @@
 
 .idea
 
+*.png
+*.jpg
+*.jpeg
+
 ### Django ###
 *.log
 *.pot
