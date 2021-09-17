@@ -12,7 +12,7 @@ class Customer(models.Model):
         return f"{self.first_name} {self.last_name}"
 
 
-class Discount(models.Model):
+class Coupon(models.Model):
     pass
 
 
