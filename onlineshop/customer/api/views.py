@@ -1,3 +1,4 @@
+from django.http import JsonResponse, HttpResponseBadRequest
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from customer.models import Customer
@@ -15,8 +16,14 @@ def register(request):
 def customerlist(request):
     if request.method == 'GET':
         customer = get_list_or_404(Customer)
-        serializer = CustomerSerializer(customer, context={'request': request})
+        serializer = CustomerSerializer(customer, many=True, context={'request': request})
         return Response(serializer.data)
+    elif request.method == 'POST':
+        if request.is_ajax:
+            data = list(Customer.objects.all().values())
+            return JsonResponse({'context': data})
+        else:
+            return HttpResponseBadRequest('Invalid request')
 
 
 @api_view(['GET', 'POST'])

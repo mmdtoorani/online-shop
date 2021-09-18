@@ -13,7 +13,7 @@
             <div class="card border-0 shadow rounded-3 my-5">
                 <div class="card-body p-4 p-sm-5">
                     <h5 class="card-title text-center mb-5 fw-light fs-5"><b>Sign up</b></h5>
-                    <form method="post" action="{% url 'login' %}">
+                    <form method="post">
                         {% csrf_token %}
                         <div class="form-floating mb-3">
                             <input type="text" class="form-control" name="first_name" id="first_name"
@@ -53,7 +53,8 @@
                             <label for="password2">Password Confirmation</label>
                         </div>
                         <div class="d-grid">
-                            <button class="btn btn-primary btn-login text-uppercase fw-bold" type="submit">Sign Up
+                            <button class="btn btn-primary btn-login text-uppercase fw-bold" id="button" type="button">
+                                Sign Up
                             </button>
                         </div>
                         <hr class="my-4">
@@ -63,5 +64,29 @@
         </div>
     </div>
 </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $('#button').on('click', function () {
+        console.log('button clicked');
+        $.ajax({
+            type: "POST",
+            url: "http://127.0.0.1:8000/api/customers",
+            dataType: "json",
+            data: {
+                first_name: $('#first_name').val(),
+                last_name: $('#last_name').val(),
+                email: $('#email').val(),
+                phone: $('#phone').val(),
+                address: $('#address').val(),
+                password: $('#password').val()
+            },
+            success: function(data){
+                console.log('Im in success!');
+                console.log(data.data);
+            }
+        })
+    })
+</script>
 </body>
 </html>
