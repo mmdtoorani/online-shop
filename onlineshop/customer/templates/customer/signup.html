@@ -13,7 +13,7 @@
             <div class="card border-0 shadow rounded-3 my-5">
                 <div class="card-body p-4 p-sm-5">
                     <h5 class="card-title text-center mb-5 fw-light fs-5"><b>Sign up</b></h5>
-                    <form method="post">
+                    <form id="form">
                         {% csrf_token %}
                         <div class="form-floating mb-3">
                             <input type="text" class="form-control" name="first_name" id="first_name"
@@ -73,17 +73,22 @@
             type: "POST",
             url: "http://127.0.0.1:8000/api/customers",
             dataType: "json",
-            data: {
-                first_name: $('#first_name').val(),
-                last_name: $('#last_name').val(),
-                email: $('#email').val(),
-                phone: $('#phone').val(),
-                address: $('#address').val(),
-                password: $('#password').val()
-            },
-            success: function(data){
+            {#data: {#}
+            {#    first_name: $('#first_name').val(),#}
+            {#    last_name: $('#last_name').val(),#}
+            {#    email: $('#email').val(),#}
+            {#    phone: $('#phone').val(),#}
+            {#    address: $('#address').val(),#}
+            {#    password: $('#password').val()#}
+            {# },#}
+            data: $('#form').serialize(),
+
+            success: function (data) {
                 console.log('Im in success!');
-                console.log(data.data);
+                console.log(data);
+            },
+            error: function () {
+                console.log(this.data);
             }
         })
     })

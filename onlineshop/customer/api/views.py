@@ -18,17 +18,15 @@ def customerlist(request):
         customer = get_list_or_404(Customer)
         serializer = CustomerSerializer(customer, many=True, context={'request': request})
         return Response(serializer.data)
+
     elif request.method == 'POST':
-        if request.is_ajax:
-            data = list(Customer.objects.all().values())
-            return JsonResponse({'context': data})
-        else:
-            return HttpResponseBadRequest('Invalid request')
+        customer = CustomerSerializer(data=request.data)
+        if customer.is_valid():
+            customer_instance = customer.save()
+            customer_instance.set_password(customer.validated_data['password'])
+            customer_instance.save()
 
 
 @api_view(['GET', 'POST'])
 def customerdetail(request, pk):
     return None
-
-
-
