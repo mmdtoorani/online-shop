@@ -4,4 +4,4 @@ from django.shortcuts import render
 
 
 def index(request):
-    return render(request, 'product/home.html', {'request': request})
+    return render(request, 'customer/signup.html', {'request': request})
