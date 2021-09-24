@@ -16,31 +16,20 @@
                     <form id="form">
                         {% csrf_token %}
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" name="first_name" id="first_name"
-                                   placeholder="Password" required>
+                            <input type="text" class="form-control" name="username" id="username"
+                                   placeholder="Username" required>
 
-                            <label for="first_name">First Name</label>
+                            <label for="username">Username</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" name="last_name" id="last_name"
-                                   placeholder="Password" required>
-
-                            <label for="last_name">Last Name</label>
-                        </div>
-                        <div class="form-floating mb-3">
-                            <input type="email" class="form-control" name="email" id="email" placeholder="Password">
+                            <input type="email" class="form-control" name="email" id="email" placeholder="email">
 
                             <label for="email">Email</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" name="phone" id="phone" placeholder="Password">
+                            <input type="text" class="form-control" name="phone" id="phone" placeholder="phone">
 
                             <label for="phone">Phone</label>
-                        </div>
-                        <div class="form-floating mb-3">
-                            <input type="text" class="form-control" name="address" id="address" placeholder="address">
-
-                            <label for="address">address</label>
                         </div>
                         <div class="form-floating mb-3">
                             <input type="password" class="form-control" name="password" id="password"
@@ -71,23 +60,16 @@
         console.log('button clicked');
         $.ajax({
             type: "POST",
-            url: "http://127.0.0.1:8000/api/customers",
-            dataType: "json",
-            {#data: {#}
-            {#    first_name: $('#first_name').val(),#}
-            {#    last_name: $('#last_name').val(),#}
-            {#    email: $('#email').val(),#}
-            {#    phone: $('#phone').val(),#}
-            {#    address: $('#address').val(),#}
-            {#    password: $('#password').val()#}
-            {# },#}
+            url: "http://127.0.0.1:8000/api/customers/register/",
             data: $('#form').serialize(),
 
             success: function (data) {
                 console.log('Im in success!');
                 console.log(data);
+                location.href = data.link
             },
             error: function () {
+                console.log('ERROR!!!');
                 console.log(this.data);
             }
         })
