@@ -24,6 +24,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'phonenumber_field',
     'bootstrap4',
+    'account',
     'customer',
     'product',
     'order',
@@ -57,20 +58,29 @@ TEMPLATES = [
     },
 ]
 
+# AUTH_USER_MODEL = 'users'
+
 WSGI_APPLICATION = 'onlineshop.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'DISABLE_SERVER_SIDE_CURSORS': True,
+#         'NAME': 'onlineshop',
+#         'USER': 'postgres',
+#         'PASSWORD': '44551213',
+#         'HOST': '127.0.0.1',
+#         'PORT': '5432'
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'DISABLE_SERVER_SIDE_CURSORS': True,
-        'NAME': 'onlineshop',
-        'USER': 'postgres',
-        'PASSWORD': '44551213',
-        'HOST': '127.0.0.1',
-        'PORT': '5432'
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'db',
     }
 }
 
@@ -114,3 +124,19 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# REST_FRAMEWORK = {
+#     "DEFAULT_PERMISSION_CLASSES": [
+#         'rest_framework.permissions.IsAuthenticated',
+#     ],
+#     "DEFAULT_AUTHENTICATION_CLASSES": [
+#         "rest_framework.authentication.BasicAuthentication",
+#         "rest_framework.authentication.SessionAuthentication",
+#         "rest_framework.authentication.TokenAuthentication",
+#     ],
+#     "DEFAULT_FILTER_BACKENDS": (
+#      "django_filters.rest_framework.DjangoFilterBackend",
+#     ),
+#     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+#     'PAGE_SIZE': 10,
+# }
