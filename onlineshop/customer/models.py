@@ -1,38 +1,26 @@
-from django.contrib.auth.base_user import BaseUserManager
-from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.contrib.auth.models import User
+
 from phonenumber_field.modelfields import PhoneNumberField
-
-
-class CustomUserManager(BaseUserManager):
-    def create_user(self, first_name, last_name, email, password, **extra_fields):
-        if not email or not first_name or not last_name:
-            raise ValueError('The information must be set')
-        email = self.normalize_email(email)
-        user = self.model(email=email, **extra_fields)
-        user.set_password(password)
-        user.get_full_name()
-        user.save()
-        return user
-
-
-class User(AbstractUser):
-    objects = CustomUserManager()
-
-    def __str__(self):
-        return self.get_full_name()
+from account.models import Account
 
 
 class Customer(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='customer')
-    first_name = models.CharField(max_length=100)
-    last_name = models.CharField(max_length=100)
-    email = models.EmailField(max_length=100, blank=True)
-    phone = PhoneNumberField(null=False, blank=False, unique=True)
-    address = models.TextField(max_length=400)
+    # user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='customer')
+    username = models.CharField(max_length=100, unique=True)
+    first_name = models.CharField(max_length=20, null=True, blank=True)
+    last_name = models.CharField(max_length=20, null=True, blank=True)
+    email = models.EmailField(max_length=100, unique=True)
+    phone = PhoneNumberField(null=False, blank=False)
+    address = models.TextField(max_length=400, null=True, blank=True)
+    password = models.CharField(max_length=20, null=False)
+    password2 = models.CharField(max_length=20, null=False)
+
+    def full_name(self):
+        return f"{self.first_name} {self.last_name}"
 
     def __str__(self):
-        return f"{self.first_name} {self.last_name}"
+        return f"{self.username}"
 
 
 class Coupon(models.Model):
