@@ -6,6 +6,8 @@
 *.png
 *.jpeg
 
+venv
+
 ### Django ###
 *.log
 *.pot
