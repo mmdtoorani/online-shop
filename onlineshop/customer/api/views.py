@@ -26,7 +26,7 @@ def register(request):
         if not len(request.POST['password']) > 8:
             if request.POST['password'] == request.POST['password2']:
                 res['success'] = True
-                res['link'] = '/login'
+                res['link'] = '/customer/login'
                 create_customer(request)
             else:
                 res['success'] = False

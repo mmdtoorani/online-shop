@@ -1,7 +1,8 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 
-# Create your views here.
+from customer.models import Customer
 
 
-def index(request):
-    return render(request, 'customer/signup.html', {'request': request})
+def home(request):
+    return render(request, 'product/home.html', {'request': request})
