@@ -10,7 +10,7 @@
     {% load static %}
     <link rel="stylesheet" href="{% static '/product/css/base.css' %}">
 
-    <style>{% block style %}{% endblock %}</style>
+    {% block style %}{% endblock %}
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
@@ -41,7 +41,7 @@
     </div>
 
         <div class="container-fluid footer" id="footer">
-            <p style="color: white">This is footer</p>
+            <p>This is footer</p>
             {% block extra_footer %}{% endblock %}
         </div>
 </div>

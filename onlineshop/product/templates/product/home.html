@@ -3,10 +3,12 @@
 {% block title %}HOME | OnlineShop{% endblock %}
 
 {% block left_items_in_nav %}
-
-    <a class="btn" href="{% url 'signup' %}">Signup</a>
-    <a class="btn" href="{% url 'login' %}">Login</a>
-    <a class="btn" href="{% url 'login' %}">Logout</a>
+    {% if not request.session.username %}
+        <a class="btn" href="{% url 'signup' %}">Signup</a>
+        <a class="btn" href="{% url 'login' %}">Login</a>
+    {% else %}
+        <a class="btn" href="{% url 'logout' %}">Logout</a>
+    {% endif %}
 {% endblock %}
 
 {% block right_items_in_nav %}
