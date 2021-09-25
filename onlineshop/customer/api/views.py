@@ -8,7 +8,7 @@ from customer.api.serializer import *
 from django.shortcuts import render, get_object_or_404, get_list_or_404, redirect
 
 
-def create_customer(req):
+def create_customer_property_func(req):
     customer = Customer.objects.create(
         username=req.POST['username'],
         email=req.POST['email'],
@@ -27,7 +27,7 @@ def register(request):
             if request.POST['password'] == request.POST['password2']:
                 res['success'] = True
                 res['link'] = '/customer/login'
-                create_customer(request)
+                create_customer_property_func(request)
             else:
                 res['success'] = False
         else:

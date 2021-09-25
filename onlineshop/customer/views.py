@@ -8,3 +8,8 @@ def login(request):
 
 def signup(request):
     return render(request, 'customer/signup.html', {'request': request})
+
+
+def logout(request):
+    logout(request)
+    return render(request, 'product/home.html', {'request': request})
