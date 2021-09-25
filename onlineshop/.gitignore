@@ -3,7 +3,6 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=django,venv
 
 .idea
-
 *.png
 *.jpeg
 
