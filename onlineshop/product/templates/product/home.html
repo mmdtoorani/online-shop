@@ -1,19 +1,19 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>HOME | OnlineShop</title>
-</head>
-<body>
-<header>
-    <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="{% url 'register' %}">signup</a>
-        </div>
-    </nav>
-</header>
-</body>
-</html>
+{% extends 'product/base.html' %}
+
+{% block title %}HOME | OnlineShop{% endblock %}
+
+{% block left_items_in_nav %}
+
+    <a class="btn" href="{% url 'signup' %}">Signup</a>
+    <a class="btn" href="{% url 'login' %}">Login</a>
+    {% if request %}
+        <a class="btn" href="{% url 'login' %}">Logout</a>
+    {% endif %}
+{% endblock %}
+
+{% block right_items_in_nav %}
+    <div class="container right">
+
+    </div>
+
+{% endblock %}

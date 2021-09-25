@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
+          integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" href="{% static '/product/css/base.css' %}">
+
+    <style>{% block style %}{% endblock %}</style>
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+<div class="main-container">
+    <div class="header">
+        <nav class="navbar navbar-fixed-top">
+
+            <div class="left_items_in_nav">
+                <a href="{% url 'home' %}" type="button" class="btn navs-button">Home</a>
+                {% block left_items_in_nav %}{% endblock %}
+            </div>
+
+            <div class="right-items-in-nav">
+                {% block right_items_in_nav %}{% endblock %}
+            </div>
+        </nav>
+        {% block extra_header %}{% endblock %}
+    </div>
+
+    <div class="container">
+        <div class="row main-component">
+            <div class="col component">
+                {% block main %}{% endblock %}
+            </div>
+            {% block right_col %}{% endblock %}
+
+        </div>
+    </div>
+
+        <div class="container-fluid footer" id="footer">
+            <p style="color: white">This is footer</p>
+            {% block extra_footer %}{% endblock %}
+        </div>
+</div>
+
+{% block js %}{% endblock %}
+</body>
+</html>
