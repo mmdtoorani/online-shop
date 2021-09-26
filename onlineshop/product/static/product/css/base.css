@@ -21,3 +21,7 @@ body {
 button {
     color: #344029;
 }
+
+.form-control {
+    background-color: #EFF8EAFC
+}
