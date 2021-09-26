@@ -16,15 +16,20 @@
 <body>
 <div class="main-container">
     <div class="header">
+
         <nav class="navbar navbar-fixed-top">
 
             <div class="left_items_in_nav">
-                <a href="{% url 'home' %}" type="button" class="btn navs-button">Home</a>
-                {% block left_items_in_nav %}{% endblock %}
+                <div class="container">
+                    <a href="{% url 'home' %}" type="button" class="btn navs-button btn-success">Home</a>
+                    {% block left_items_in_nav %}{% endblock %}
+                </div>
             </div>
 
             <div class="right-items-in-nav">
-                {% block right_items_in_nav %}{% endblock %}
+                <div class="container">
+                    {% block right_items_in_nav %}{% endblock %}
+                </div>
             </div>
         </nav>
         {% block extra_header %}{% endblock %}
@@ -40,10 +45,10 @@
         </div>
     </div>
 
-        <div class="container-fluid footer" id="footer">
-            <p>This is footer</p>
-            {% block extra_footer %}{% endblock %}
-        </div>
+    <div class="container-fluid footer" id="footer">
+        <p>This is footer</p>
+        {% block extra_footer %}{% endblock %}
+    </div>
 </div>
 
 {% block js %}{% endblock %}

@@ -1,12 +1,21 @@
 
 body {
-    background-image: url('../img/background_wall.jpg') ;
+    background-image: url('../img/background_wall.jpg');
     background-size: cover;
+}
+
+.main-container {
+    margin: auto;
 }
 
 .navbar {
     background-color: rgb(143, 177, 112);
     box-shadow: 0 1px 10px rgb(4, 52, 4);
+}
+
+.right-items-in-nav > .container {
+    display: flex;
+    justify-content: start;
 }
 
 button {

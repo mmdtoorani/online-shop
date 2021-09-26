@@ -8,6 +8,14 @@
 
 venv
 
+### Database ###
+*.accdb
+*.db
+*.dbf
+*.mdb
+*.pdb
+*.sqlite3
+
 ### Django ###
 *.log
 *.pot
@@ -167,5 +175,3 @@ cython_debug/
 [Ss]cripts
 pyvenv.cfg
 pip-selfcheck.json
-
-# End of https://www.toptal.com/developers/gitignore/api/django,venv
