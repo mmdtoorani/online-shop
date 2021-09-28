@@ -7,5 +7,5 @@ from customer.models import Customer
 class SignupForm(forms.ModelForm):
     class Meta:
         model = Customer
-        fields = ['username', 'password', 'password2', ]
+        fields = ['username', 'email', 'phone', 'password', 'password2', ]
         many = False
