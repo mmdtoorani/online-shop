@@ -14,8 +14,10 @@ def signup(request):
 def profile(request):
     return render(request, 'customer/profile.html', {'request': request})
 
+
 def orderhistory(request):
     return render(request, 'customer/orderhistory.html', {'request': request})
+
 
 def auth_logout(request):
     logout(request)

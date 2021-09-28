@@ -13,9 +13,9 @@ def create_customer_property_func(req):
         username=req.POST['username'],
         email=req.POST['email'],
         phone=req.POST['phone'],
-        password=req.POST['password'],
-        # password2=req.POST['password2'],
     )
+    customer.save()
+    customer.set_password(req.POST['password'])
     customer.save()
 
 
