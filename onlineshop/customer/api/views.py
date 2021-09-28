@@ -14,7 +14,7 @@ def create_customer_property_func(req):
         email=req.POST['email'],
         phone=req.POST['phone'],
         password=req.POST['password'],
-        password2=req.POST['password2'],
+        # password2=req.POST['password2'],
     )
     customer.save()
 
@@ -22,6 +22,7 @@ def create_customer_property_func(req):
 @api_view(['GET', 'POST'])
 def register(request):
     if request.method == 'POST':
+        # print(request.POST)
         res = dict()
         if not len(request.POST['password']) > 8:
             if request.POST['password'] == request.POST['password2']:
