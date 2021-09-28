@@ -5,6 +5,9 @@
 <link rel="stylesheet" href="{% static 'customer/css/login.css' %}">
 {% endblock %}
 
+{% block title %}
+Login | Onlineshop
+{% endblock %}
 
 {% block main %}
 <div class="container">
@@ -14,7 +17,7 @@
                 <div class="card-body p-4 p-sm-5" id="card-body">
                     <h5 class="card-title text-center mb-5 fw-light fs-5"><b>Login</b></h5>
 
-                    <form action="{% url 'home' %}" method="post">
+                    <form action="{% url 'product:home' %}" method="post">
                         {% csrf_token %}
                         <div class="form-floating mb-3">
                             <input type="text" class="form-control" name='username' id="username" required>

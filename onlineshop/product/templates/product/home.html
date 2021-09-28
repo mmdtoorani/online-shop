@@ -22,12 +22,15 @@
 {% endblock %}
 
 {% block left_items_in_nav %}
-    {% if not request.session.username %}
-        <a class="btn btn-success" href="{% url 'signup' %}">Signup</a>
-        <a class="btn btn-success" href="{% url 'login' %}">Login</a>
-    {% else %}
-        <a class="btn btn-success" href="{% url 'logout' %}">Logout</a>
-    {% endif %}
+{#    {% if not request.user.is_authenticated %}#}
+        <a class="btn btn-success" href="{% url 'customer:signup' %}">Signup</a>
+        <a class="btn btn-success" href="{% url 'customer:login' %}">Login</a>
+{#    {% else %}#}
+        <a class="btn btn-success" href="{% url 'customer:profile' %}">Profile</a>
+        <a class="btn btn-success" href="{% url 'customer:orderhistory' %}">History</a>
+
+        <a class="btn btn-success" href="{% url 'customer:logout' %}">Logout</a>
+{#    {% endif %}#}
 {% endblock %}
 
 {% block right_items_in_nav %}
