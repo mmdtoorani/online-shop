@@ -9,12 +9,19 @@ class Category(models.Model):
 
 
 class Product(models.Model):
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
     name = models.CharField(max_length=80)
-    price = models.PositiveIntegerField()
+    percent = models.PositiveIntegerField()
+    initial_price = models.PositiveIntegerField(null=True, blank=True)
+    final_price = models.PositiveIntegerField()
     description = models.TextField()
     photo = models.ImageField(upload_to='./product/media', null=True, blank=True)
     stock = models.SmallIntegerField()
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
 
     def __str__(self):
         return f'{self.name}'
+
+    @property
+    def generate_final_price(self):
+        self.final_price = self.initial_price - (self.initial_price * self.percent)
+        return self.final_price
