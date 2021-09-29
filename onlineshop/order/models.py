@@ -6,7 +6,7 @@ from product.models import Product
 class Order(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.RESTRICT)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    stock = models.PositiveIntegerField()
+    stock = models.PositiveIntegerField(default=1)
 
     AVAILABLE = 'AVAILABLE'
     UNAVAILABLE = 'UNAVAILABLE'
@@ -17,4 +17,4 @@ class Order(models.Model):
     availability = models.CharField(choices=availability_choices, max_length=100, default=AVAILABLE)
 
     def __str__(self):
-        return f'{self.customer.first_name} {self.customer.last_name} | {self.product.name}'
+        return f'{self.customer.first_name} {self.customer.last_name} | {self.product.product_name}'

@@ -2,24 +2,24 @@ from django.db import models
 
 
 class Category(models.Model):
-    name = models.CharField(max_length=50)
+    category_name = models.CharField(max_length=50)
 
     def __str__(self):
-        return f'{self.name}'
+        return self.category_name
 
 
 class Product(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    name = models.CharField(max_length=80)
-    percent = models.PositiveIntegerField()
-    initial_price = models.PositiveIntegerField(null=True, blank=True)
-    final_price = models.PositiveIntegerField()
+    product_name = models.CharField(max_length=80)
+    percent = models.PositiveIntegerField(default=0, blank=True)
+    initial_price = models.PositiveIntegerField(default=0, blank=True)
+    final_price = models.PositiveIntegerField(default=0)
     description = models.TextField()
     photo = models.ImageField(upload_to='./product/media', null=True, blank=True)
-    stock = models.SmallIntegerField()
+    stock = models.SmallIntegerField(default=0)
 
     def __str__(self):
-        return f'{self.name}'
+        return self.product_name
 
     @property
     def generate_final_price(self):
