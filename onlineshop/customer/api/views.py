@@ -1,14 +1,8 @@
-from django.contrib.auth.models import User
-from django.http import JsonResponse, HttpResponseBadRequest, HttpResponse
-from django.urls import reverse
-from rest_framework import authentication, permissions
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-from rest_framework.views import APIView
+from django.shortcuts import get_list_or_404
 
-from customer.models import Customer
 from customer.api.serializer import *
-from django.shortcuts import render, get_object_or_404, get_list_or_404, redirect
 
 
 def create_customer_property_func(req):
