@@ -1,7 +1,18 @@
+from django.shortcuts import get_list_or_404
+from rest_framework import viewsets
+from rest_framework.response import Response
 
-def productlist(request):
-    return None
+from product.api.serializer import ProductsListSerializer
+from product.models import Product, Category
 
 
-def productdetail(request, pk):
-    return None
+class ProductViewSet(viewsets.ViewSet):
+    def productlist(self, request):
+        queryset = get_list_or_404(Product)
+        serializer = ProductsListSerializer(queryset, context={'request': request}, many=True)
+        return Response(serializer.data)
+
+    def category(self, request, pk):
+        queryset = get_list_or_404(Category, id=pk)
+        serializer = ProductsListSerializer(queryset, context={'request': request}, many=True)
+        return Response(serializer.data)
