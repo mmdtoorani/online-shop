@@ -4,22 +4,7 @@
 {% block title %}HOME | OnlineShop{% endblock %}
 
 {% block style %}
-    <style>
-        .search-bar {
-            display: flex;
-            justify-content: space-between;
-        }
-
-        #search-btn {
-            margin-right: 10px;
-            margin-left: 5px;
-        }
-
-        .form-control {
-            background-color: #EFF8EAFC
-        }
-
-    </style>
+    <link rel="stylesheet" href="{% static '/product/css/home.css' %}">
 {% endblock %}
 
 {% block left_items_in_nav %}
@@ -43,6 +28,16 @@
 
 {% block main_left %}
     <div class="container product-container">
+        <div class="card-group">
+            <div class="row">
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block main_right %}
+    <div class="container right-component">
 
     </div>
 {% endblock %}

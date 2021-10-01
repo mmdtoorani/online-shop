@@ -5,7 +5,7 @@ body {
 }
 
 .main-container {
-    margin: auto;
+    margin: 10px auto auto;
 }
 
 .navbar {

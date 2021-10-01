@@ -14,7 +14,7 @@ $.ajax({
             let stock = obj.stock;
             let description = obj.description;
             const card =
-                `<div class="card" style="width: 18rem;">
+                `<div class="card col-xl-3 col-lg-4 col-md-6 col-sm-12" style="100%">
                      <img class="card-img-top" src=${obj.photo} alt="Card image cap">
                      <div class="card-body">
                          <h5 class="card-title">${product_name}</h5>
@@ -26,7 +26,7 @@ $.ajax({
                          <button class="btn btn-primary">add to cart</button>
                      </div>
                 </div>`;
-            $('.product-container').append(card)
+            $('.product-container').children().children().append(card)
         }
     },
     error: function () {
