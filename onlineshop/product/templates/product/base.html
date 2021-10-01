@@ -35,13 +35,16 @@
         {% block extra_header %}{% endblock %}
     </div>
 
+    {% block without_col %}{% endblock %}
+
     <div class="container">
         <div class="row main-component">
-            <div class="col component">
-                {% block main %}{% endblock %}
+            <div class="col-9 component">
+                {% block main_left %}{% endblock %}
             </div>
-            {% block right_col %}{% endblock %}
-
+            <div class="col-3 component">
+                {% block main_right %}{% endblock %}
+            </div>
         </div>
     </div>
 

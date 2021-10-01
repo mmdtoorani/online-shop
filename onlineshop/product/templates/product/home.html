@@ -1,4 +1,5 @@
 {% extends 'product/base.html' %}
+{% load static %}
 
 {% block title %}HOME | OnlineShop{% endblock %}
 
@@ -38,4 +39,15 @@
         <input class="form-control" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-success my-2 my-sm-0" type="submit" id="search-btn">Search</button>
     </div>
+{% endblock %}
+
+{% block main_left %}
+    <div class="container product-container">
+
+    </div>
+{% endblock %}
+
+{% block js %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src={% static 'product/js/products.js' %}></script>
 {% endblock %}
