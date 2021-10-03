@@ -18,6 +18,10 @@ def orderhistory(request):
     return render(request, 'customer/orderhistory.html', {'request': request})
 
 
+def cart(request):
+    return render(request, 'customer/cart.html', {'request': request})
+
+
 def auth_logout(request):
     logout(request)
     return render(request, 'product/home.html', {'request': request})
