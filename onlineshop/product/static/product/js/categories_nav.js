@@ -1,16 +1,54 @@
 $.ajax({
     method: 'GET',
     url: 'http://127.0.0.1:8000/api/products/categories/',
-    success: function (data) {
-        console.log(data)
-        for (const obj of data) {
-            let category = obj.category_name
+    success: function (categories) {
+        console.log(categories)
+        for (const cat of categories) {
+            let category_in_catAPI = cat.category_name
 
-            let cat_link = `<button class="btn"> ${category}</button>`
-            $('#navbarSupportedContent').append(cat_link).on('click', function() {
-
-            })
+            let cat_link = `<button class="btn"> ${category_in_catAPI}</button>`
+            var cat_btn = $('#navbarSupportedContent').append(cat_link)
         }
+        // cat_btn.on('click', function () {
+        //     console.log('cat_link clicked')
+        //     $.ajax({
+        //         method: 'GET',
+        //         url: 'http://127.0.0.1:8000/api/products/',
+        //         success: function (products) {
+        //             for (const product of products) {
+        //                 let product_name = product.product_name;
+        //                 let category = product.category;
+        //                 let initial_price = product.initial_price;
+        //                 let final_price = product.final_price;
+        //                 let percent = product.percent;
+        //                 let stock = product.stock;
+        //                 let description = product.description;
+        //                 let category_in_prdctAPI = product.category
+        //                 if (category_in_prdctAPI === category_in_prdctAPI) {
+        //                     // let card = generate_card(
+        //                     //     product_name, category,
+        //                     //     initial_price, final_price,
+        //                     //     percent, stock, description
+        //                     // )
+        //                     $('.product-container').children().children().replaceWith(`<div class="card col-xl-3 col-lg-4 col-md-6 col-sm-12" style="100%">
+        //              <img class="card-img-top" src=${product.photo} alt="Card image cap">
+        //              <div class="card-body">
+        //                  <h5 class="card-title">${product_name}</h5>
+        //                  <p class="card-text">${initial_price}</p>
+        //                  <p class="card-text">${percent}</p>
+        //                  <p class="card-text">${final_price}</p>
+        //                  <p class="card-text">${stock}</p>
+        //                  <p class="card-text">${description}</p>
+        //                  <button class="btn btn-primary">add to cart</button>
+        //              </div>
+        //         </div>`)
+        //                     // import {generate_card} from "./card";
+        //                 }
+        //             }
+        //         }
+        //     })
+        // })
+
     },
     error: function () {
         console.log('error in get data from category api!')
