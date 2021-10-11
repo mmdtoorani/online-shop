@@ -3,10 +3,15 @@ from product.models import Product, Category
 
 
 class ProductsListSerializer(serializers.ModelSerializer):
-    category = serializers.HyperlinkedRelatedField(
+    # category = serializers.HyperlinkedRelatedField(
+    #     read_only=True,
+    #     view_name='category',
+    #     lookup_field='pk'
+    # )
+
+    category = serializers.CharField(
+        source='category.category_name',
         read_only=True,
-        view_name='category',
-        lookup_field='pk'
     )
 
     class Meta:
