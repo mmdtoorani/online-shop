@@ -12,10 +12,10 @@ class ProductViewSet(viewsets.ViewSet):
         serializer = ProductsListSerializer(queryset, context={'request': request}, many=True)
         return Response(serializer.data)
 
-    def category(self, request, pk):
-        queryset = get_list_or_404(Category, id=pk)
-        serializer = ProductsListSerializer(queryset, context={'request': request}, many=True)
-        return Response(serializer.data)
+    # def category(self, request, pk):
+    #     queryset = get_list_or_404(Category, id=pk)
+    #     serializer = ProductsListSerializer(queryset, context={'request': request}, many=True)
+    #     return Response(serializer.data)
 
 
 class CategoryViewSet(viewsets.ViewSet):
