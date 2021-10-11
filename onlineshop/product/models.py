@@ -16,7 +16,7 @@ class Product(models.Model):
     final_price = models.PositiveIntegerField(default=0, blank=True)
     stock = models.SmallIntegerField(default=0)
     description = models.TextField()
-    photo = models.ImageField(upload_to='./product/media', null=True, blank=True)
+    photo = models.ImageField(upload_to='product_image', null=True, blank=True)
 
     def __str__(self):
         return self.product_name
