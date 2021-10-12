@@ -4,10 +4,10 @@ $.ajax({
     success: function (categories) {
         console.log(categories)
         for (const cat of categories) {
-            var cat_name = cat.category_name
-
+            let cat_name = cat.category_name;
             let cat_link = `<button class="btn category-choice" value="${cat_name}"> ${cat_name}</button>`
-            var cat_btn = $('#navbarSupportedContent').append(cat_link)
+
+            let cat_btn = $('#navbarSupportedContent').append(cat_link);
         }
         // cat_btn.on('click', function () {
         //     console.log('cat_link clicked')
@@ -17,7 +17,6 @@ $.ajax({
         console.log('error in get data from category api!')
     }
 })
-
 
 
 // $.ajax({
