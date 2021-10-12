@@ -9,9 +9,10 @@ $.ajax({
             console.log(this.value)
             $.ajax({
                 method: "GET",
-                url: `http://127.0.0.1:8000/api/products/?category=${this.value}`,
+                url: `http://127.0.0.1:8000/api/products/${this.value}`,
 
                 success: function (data_with_category) {
+                    $('.product-container').children().children().empty()
                     for (const obj of data_with_category) {
                         let card = `<div class="card col-xl-3 col-lg-4 col-md-6 col-sm-12">
                                          <img class="card-img-top" src=${obj.photo} alt="Card image cap">
@@ -26,7 +27,7 @@ $.ajax({
                                              <button class="btn btn-primary">add to cart</button>
                                          </div>
                                     </div>`
-                        $('.product-container').children().children().empty().append(card)
+                        $('.product-container').children().children().append(card)
                     }
                 }
             })

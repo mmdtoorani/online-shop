@@ -13,16 +13,13 @@ class ProductAPIView(APIView):
     def get_queryset(self):
         return Product.objects.all()
 
-    def get(self, request, *args, **kwargs):
-        try:
-            category = request.query_params["category"]
-            if category:
-                product = Product.objects.filter(category__category_name=category)
-                serializer = ProductsListSerializer(product, many=True)
-                return Response(serializer.data)
-        except:
-            product = self.get_queryset()
-            serializer = ProductsListSerializer(product, many=True)
+    def get(self, request, category=None):
+        if category:
+            queryset = get_list_or_404(Product, category__category_name=category)
+            serializer = ProductsListSerializer(queryset, context={'request': request}, many=True)
+        else:
+            queryset = Product.objects.all()
+            serializer = ProductsListSerializer(queryset, context={'request': request}, many=True)
 
         return Response(serializer.data)
 
