@@ -9,9 +9,3 @@ class CustomerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Customer
         fields = '__all__'
-
-
-# class LoginSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = Customer
-#         fields = ['username', 'password', ]

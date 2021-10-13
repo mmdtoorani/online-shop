@@ -1,6 +1,10 @@
+from django.http import HttpResponse
+from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-from django.shortcuts import get_list_or_404
+from django.shortcuts import get_list_or_404, render, redirect
+from django.core.mail import send_mail
+from django.contrib import messages
 
 from customer.api.serializer import *
 
@@ -55,4 +59,38 @@ def changepassword(request):
 
 @api_view(['GET', 'POST'])
 def forgetpassword(request):
-    return None
+    if request.method == 'POST':
+        res = dict()
+        username = request.POST['username']
+        try:
+            customer = Customer.objects.get(username=username)
+            if customer:
+                his_email = customer.email
+                new_password = Customer.objects.make_random_password(length=20)
+                res['success'] = True
+                res['link'] = '/customer/login'
+                res['msg'] = f'Your new password sent to {his_email}. Please login with this'
+                messages.success(request, res['msg'])
+                customer.set_password(new_password)
+                customer.save()
+                send_mail('your new password',
+                          f'your reset password is {new_password}',
+                          'security@onlineshop.com',
+                          [his_email],
+                          fail_silently=False, )
+            else:
+                res['success'] = False
+                res['link'] = 'customer/forgetpassword'
+                res['msg'] = 'This username is not exist!'
+                messages.error(request, res['msg'])
+                return Response(res, status=status.HTTP_400_BAD_REQUEST)
+
+        except:
+            res['success'] = False
+            res['link'] = 'customer/forgetpassword'
+            res['msg'] = 'Something went wrong'
+            messages.error(request, res['msg'])
+            return Response(res, status=status.HTTP_400_BAD_REQUEST)
+
+        return Response(res)
+    return redirect('customer:forgetpassword')

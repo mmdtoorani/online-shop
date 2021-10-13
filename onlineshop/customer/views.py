@@ -10,6 +10,10 @@ def signup(request):
     return render(request, 'customer/signup.html', {'request': request})
 
 
+def forgetpassword(request):
+    return render(request, 'customer/forget_password.html', {'request': request})
+
+
 def profile(request):
     return render(request, 'customer/profile.html', {'request': request})
 
