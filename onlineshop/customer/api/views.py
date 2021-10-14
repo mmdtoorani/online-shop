@@ -53,14 +53,6 @@ def customerlist(request):
 
 
 @api_view(['GET', 'POST'])
-def edit_profile(request):
-    if request.method == 'POST':
-
-        print(request.POST)
-        return HttpResponse("<h1>!!!!!!!!!!!</h1>")
-
-
-@api_view(['GET', 'POST'])
 def forgetpassword(request):
     if request.method == 'POST':
         res = dict()

@@ -1,11 +1,12 @@
+from phonenumber_field.formfields import PhoneNumberField
 from django import forms
-from django.contrib.auth import authenticate
-
 from customer.models import Customer
 
 
-class SignupForm(forms.ModelForm):
+class EditProfileForm(forms.ModelForm):
+    phone = PhoneNumberField(required=False)
+    address = forms.Textarea()
+
     class Meta:
         model = Customer
-        fields = ['username', 'email', 'phone', 'password', 'password2', ]
-        many = False
+        fields = ['first_name', 'last_name', 'email', 'phone', 'address', 'username', ]

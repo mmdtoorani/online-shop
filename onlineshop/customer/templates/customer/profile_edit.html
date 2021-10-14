@@ -19,109 +19,25 @@
 {% endblock %}
 
 {% block main %}
-    {#    <div class="card col-12" style="margin-top: 10px;">#}
-    {#        <form>#}
-    {#            {% csrf_token %}#}
-    {#            <label>#}
-    {#                <input type="text" placeholder="{{ request.user.username }}" class="card-text">#}
-    {#            </label>#}
-    {#            <label>#}
-    {#                <input type="text" placeholder="{{ request.user.first_name }}" class="card-text">#}
-    {#            </label>#}
-    {#            <label>#}
-    {#                <input type="text" placeholder="{{ request.user.last_name }}" class="card-text">#}
-    {#            </label>#}
-    {#            <label>#}
-    {#                <input type="text" placeholder="{{ address }}" class="card-text">#}
-    {#            </label>#}
-    {#            <label>#}
-    {#                <input type="email" placeholder="{{ request.user.email }}" class="card-text">#}
-    {#            </label>#}
-    {#            <label>#}
-    {#                <input type="number" placeholder="{{ phone }}" class="card-text">#}
-    {#            </label>#}
-    {#            <label> #}
-    {#                <input type="password" class="card-text">#}
-    {#            </label>#}
-    {#            <label>#}
-    {#                <input type="password" class="card-text">#}
-    {#            </label>#}
-    {##}
-    {#        </form>#}
-    {#    </div>#}
-    {#    <div class="col-1">#}
-    {#        <a class="btn" id="button" href="{% url "customer:profile_edit" %}">edit</a>#}
-    {#    </div>#}
     <div class="container">
         <div class="row">
             <div class="col-12" id="card-container">
                 <div class="card border-0 shadow rounded-3 my-5">
                     <div class="card-body p-4 p-sm-5" id="card-body">
                         <h5 class="card-title text-center mb-5 fw-light fs-5"><b>edit your profile</b></h5>
-                        <form id="form">
-                            {% csrf_token %}
-                            <div class="form-floating mb-3">
-                                <input type="text" class="form-control" name="username" id="username"
-                                       placeholder="{{ request.user.username }}">
-
-                                <label for="username">Username</label>
-                            </div>
-                            <div class="form-floating mb-3">
-                                <input type="email" class="form-control" name="email" id="email"
-                                       placeholder="Email">
-
-                                <label for="email">Email</label>
-                            </div>
-                            <div class="form-floating mb-3">
-                                <input type="text" class="form-control" name="phone" id="phone"
-                                       placeholder="Phone number">
-
-                                <label for="phone">Phone</label>
-                            </div>
-                            <div class="form-floating mb-3">
-                                <input type="text" class="form-control" name="address" id="address"
-                                       placeholder="Address">
-
-                                <label for="address">Address</label>
-                            </div>
-                            <div class="form-floating mb-3">
-                                <input type="text" class="form-control" name="first_name" id="first_name"
-                                       placeholder="First Name">
-
-                                <label for="first_name">first name</label>
-                            </div>
-                            <div class="form-floating mb-3">
-                                <input type="text" class="form-control" name="last_name" id="last_name"
-                                       placeholder="Last Name">
-
-                                <label for="last_name">last name</label>
-                            </div>
-                            <div class="form-floating mb-3">
-                                <input type="password" class="form-control" name="password" id="password"
-                                       placeholder="Password">
-                                <label for="password">Password</label>
-                            </div>
-                            <div class="form-floating mb-3">
-                                <input type="password" class="form-control" name="password2" id="password2"
-                                       placeholder="Confirm Password">
-                                <label for="password2">Password Confirmation</label>
-                            </div>
-                            <div class="d-grid">
+                        <div class="form-group">
+                            <form method="POST">
+                                {% csrf_token %}
+                                {{ form.as_p }}
                                 <button class="btn btn-primary btn-login text-uppercase fw-bold" id="button"
-                                        type="button">
-                                    Edit
+                                        type="submit">
+                                    Update
                                 </button>
-                            </div>
-                            <hr class="my-4">
-                        </form>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-{% endblock %}
-
-{% block js %}
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="{% static "customer/js/profile_edit.js" %}"></script>
 {% endblock %}
