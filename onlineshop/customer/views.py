@@ -1,6 +1,10 @@
 from django.contrib.auth import logout
-from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, redirect
+from django.views import generic
+from django.urls import reverse_lazy
 
+from customer.forms import EditProfileForm
 from customer.models import Customer
 
 
@@ -31,8 +35,20 @@ def profile(request):
         pass
 
 
+@login_required
 def profile_edit(request):
-    return render(request, 'customer/profile_edit.html', {'request': request})
+    if request.method == 'POST':
+        form = EditProfileForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('customer:profile')
+    else:
+        form = EditProfileForm(instance=request.user)
+
+    context = {
+        'form': form
+    }
+    return render(request, 'customer/profile_edit.html', context)
 
 
 def orderhistory(request):
