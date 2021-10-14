@@ -31,9 +31,21 @@
         <div class="card col-12" style="margin-top: 10px;">
             <div class="card-body">
                 <p class="card-text">username: {{ request.user.username }}</p>
-                <p class="card-text">fname: {{ request.user.first_name }}</p>
-                <p class="card-text">lname: {{ request.user.last_name }}</p>
-                <p class="card-text">address: {{ address }}</p>
+                {% if not request.user.first_name %}
+                    <p class="card-text">first name: Not set</p>
+                {% else %}
+                    <p class="card-text">first name: {{ request.user.first_name }}</p>
+                {% endif %}
+                {% if not request.user.last_name %}
+                    <p class="card-text">last name: Not set</p>
+                {% else %}
+                    <p class="card-text">last name: {{ request.user.last_name }}</p>
+                {% endif %}
+                {% if not address %}
+                    <p class="card-text">address: Not set</p>
+                {% else %}
+                    <p class="card-text">address: {{ address }}</p>
+                {% endif %}
                 <p class="card-text">email: {{ request.user.email }}</p>
                 <p class="card-text">phone: {{ phone }}</p>
             </div>
