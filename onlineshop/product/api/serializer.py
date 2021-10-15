@@ -7,6 +7,10 @@ class ProductsListSerializer(serializers.ModelSerializer):
         source='category.category_name',
         read_only=True,
     )
+    final_price = serializers.ReadOnlyField(source='generate_final_price')
+    #
+    # def final_price(self):
+    #     return Product.generate_final_price
 
     class Meta:
         model = Product
