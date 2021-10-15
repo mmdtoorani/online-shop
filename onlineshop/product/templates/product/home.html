@@ -13,7 +13,6 @@
         <a class="btn btn-success" href="{% url 'customer:login' %}">Login</a>
     {% else %}
         <a class="btn btn-success" href="{% url 'customer:profile' %}">Profile</a>
-        <a class="btn btn-success" href="{% url 'customer:orderhistory' %}">History</a>
         <a class="btn btn-success" href="{% url 'customer:logout' %}">Logout</a>
     {% endif %}
 {% endblock %}
@@ -46,7 +45,7 @@
 {% endblock %}
 
 {% block main %}
-    <section style="height: 3000px">
+    <section>
         <div class="container product-container">
             <div class="card-group">
                 <div class="row"></div>

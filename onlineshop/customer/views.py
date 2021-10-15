@@ -1,8 +1,6 @@
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
-from django.views import generic
-from django.urls import reverse_lazy
 
 from customer.forms import EditProfileForm
 from customer.models import Customer
@@ -25,7 +23,6 @@ def profile(request):
         this_user = Customer.objects.get(id=request.user.id)
         phone = this_user.phone
         address = this_user.address
-        print(phone, address)
         return render(request, 'customer/profile.html', {
             'request': request,
             'phone': phone,
@@ -49,10 +46,6 @@ def profile_edit(request):
         'form': form
     }
     return render(request, 'customer/profile_edit.html', context)
-
-
-def orderhistory(request):
-    return render(request, 'customer/orderhistory.html', {'request': request})
 
 
 def cart(request):
