@@ -66,22 +66,15 @@ WSGI_APPLICATION = 'onlineshop.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'DISABLE_SERVER_SIDE_CURSORS': True,
-#         'NAME': 'onlineshop',
-#         'USER': 'postgres',
-#         'PASSWORD': '44551213',
-#         'HOST': '127.0.0.1',
-#         'PORT': '5432'
-#     }
-# }
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'db',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'DISABLE_SERVER_SIDE_CURSORS': True,
+        'NAME': 'onlineshop',
+        'USER': '********:)',
+        'PASSWORD': '************:)',
+        'HOST': '127.0.0.1',
+        'PORT': '5432'
     }
 }
 
