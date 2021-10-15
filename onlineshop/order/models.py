@@ -4,7 +4,7 @@ from product.models import Product
 
 
 class Order(models.Model):
-    customer = models.ForeignKey(Customer, on_delete=models.SET_NULL)
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     # product = models.ForeignKey(Product, on_delete=models.CASCADE)
 
     AVAILABLE = 'AVAILABLE'
@@ -20,6 +20,6 @@ class Order(models.Model):
 
 
 class OrderItem(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.SET_NULL)
-    order = models.ForeignKey(Order, on_delete=models.SET_NULL)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    order = models.ForeignKey(Order, on_delete=models.CASCADE)
     stock = models.PositiveIntegerField(default=0)
