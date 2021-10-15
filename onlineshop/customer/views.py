@@ -1,6 +1,8 @@
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
+from rest_framework.response import Response
 
 from customer.forms import EditProfileForm
 from customer.models import Customer
@@ -49,6 +51,11 @@ def profile_edit(request):
 
 
 def cart(request):
+    if request.method == 'POST':
+        res = {'success': 'true'}
+        print(request.POST)
+        return Response(res)
+
     return render(request, 'customer/cart.html', {'request': request})
 
 

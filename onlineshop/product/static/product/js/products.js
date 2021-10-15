@@ -1,6 +1,24 @@
+function AddToCart(product_id) {
+
+    $.ajax({
+        method: "POST",
+        url: 'http://127.0.0.1:8000/api/product/',
+        data: {
+            'id': product_id
+        },
+
+        success: function (response) {
+            console.log('helloooo')
+        },
+        error: function () {
+            console.log('error')
+        }
+
+    })
+}
+
 $.ajax({
     method: 'GET',
-
     url: `http://127.0.0.1:8000/api/products/`,
     success: function (data_without_category) {
         console.log(data_without_category)
@@ -14,6 +32,7 @@ $.ajax({
                 success: function (data_with_category) {
                     $('.product-container').children().children().empty()
                     for (const obj of data_with_category) {
+
                         let card = `<div class="card col-xl-3 col-lg-4 col-md-6 col-sm-12">
                                          <img class="card-img-top" src=${obj.photo} alt="Card image cap">
                                          <div class="card-body">
@@ -24,7 +43,9 @@ $.ajax({
                                              <p class="card-text">final price: ${obj.final_price}</p>
                                              <p class="card-text">stock: ${obj.stock}</p>
                                              <p class="card-text">description: ${obj.description}</p>
-                                             <button class="btn btn-primary">add to cart</button>
+                                             <button onclick="AddToCart(${obj.id})" class="btn btn-primary">
+                                                add to cart
+                                             </button>
                                          </div>
                                     </div>`
                         $('.product-container').children().children().append(card)
@@ -44,7 +65,7 @@ $.ajax({
                          <p class="card-text">final price: ${obj.final_price}</p>
                          <p class="card-text">stock: ${obj.stock}</p>
                          <p class="card-text">description: ${obj.description}</p>
-                         <button class="btn btn-primary">add to cart</button>
+                         <button onclick="AddToCart(${obj.id})" class="btn btn-primary">add to cart</button>
                      </div>
                 </div>`
             $('.product-container').children().children().append(card)
