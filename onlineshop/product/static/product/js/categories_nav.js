@@ -1,6 +1,6 @@
 $.ajax({
     method: 'GET',
-    url: 'http://127.0.0.1:8000/api/products/categories/',
+    url: '/api/products/categories/',
     success: function (categories) {
         console.log(categories)
         for (const cat of categories) {
