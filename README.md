@@ -18,6 +18,28 @@ $ . venv/bin/activate
 > py -3 -m venv venv
 > venv\Scripts\activate.bat
 ```
+
+#### In settings.py, set up the database :
+for this project i used postgress, you can see the following settings below :
+```
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'db_name',
+        'USER': 'db_user',
+        'PASSWORD': 'db_user_password',
+        'HOST': 'localhost',
+        'PORT': '',
+    }
+}
+```
+
+#### makemigrations :
+```bash
+python manage.py makemigrations
+python manage.py migrate
+```
+
 ##### Install the requirements :
 ```bash
 $ pip3 install -r requirements.txt
