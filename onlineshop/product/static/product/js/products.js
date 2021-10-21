@@ -16,7 +16,7 @@ $.ajax({
                         console.log(obj.id)
 
                         let card = `<div class="card col-xl-3 col-lg-4 col-md-6 col-sm-12">
-                                         <form method="POST" action="/order/add_to_cart/">
+                                         <form method="POST" action="/order/single_product/">
                                              <img class="card-img-top" src=${obj.photo} alt="Card image cap">
                                              <div class="card-body">
                                                  <h5 class="card-title">${obj.product_name}</h5>
@@ -28,7 +28,7 @@ $.ajax({
                                                  <p class="card-text">description: ${obj.description}</p>
                                                  <input value="${obj.id}">
                                                      <button type="submit" class="btn btn-primary">
-                                                        add to cart
+                                                        view
                                                      </button>
                                              </div>
                                          </form>
@@ -41,7 +41,7 @@ $.ajax({
 
         for (const obj of data_without_category) {
             let card = `<div class="card col-xl-3 col-lg-4 col-md-6 col-sm-12">
-                         <form method="POST" action="/order/add_to_cart/">
+                         <form method="POST" action="/order/single_product/">
                          <img class="card-img-top" src=${obj.photo} alt="Card image cap">
                          <div class="card-body">
                              <h5 class="card-title">${obj.product_name}</h5>
@@ -53,11 +53,11 @@ $.ajax({
                              <p class="card-text">description: ${obj.description}</p>
                              <input value="${obj.id}" name="id" hidden>
                             <button type="submit" class="btn btn-primary">
-                                                        add to cart
+                                                        view
                                                      </button>
                          </div>
-                        </form>
-                        </div>`
+                         </form>
+                         </div>`
             $('.product-container').children().children().append(card)
         }
     },
