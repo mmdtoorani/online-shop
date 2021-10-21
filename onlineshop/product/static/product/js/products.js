@@ -1,25 +1,6 @@
-function AddToCart(product_id) {
-
-    $.ajax({
-        method: "POST",
-        url: 'http://127.0.0.1:8000/api/product/',
-        data: {
-            'id': product_id
-        },
-
-        success: function (response) {
-            console.log('helloooo')
-        },
-        error: function () {
-            console.log('error')
-        }
-
-    })
-}
-
 $.ajax({
     method: 'GET',
-    url: `http://127.0.0.1:8000/api/products/`,
+    url: `/api/products/`,
     success: function (data_without_category) {
         console.log(data_without_category)
 
@@ -32,21 +13,25 @@ $.ajax({
                 success: function (data_with_category) {
                     $('.product-container').children().children().empty()
                     for (const obj of data_with_category) {
+                        console.log(obj.id)
 
                         let card = `<div class="card col-xl-3 col-lg-4 col-md-6 col-sm-12">
-                                         <img class="card-img-top" src=${obj.photo} alt="Card image cap">
-                                         <div class="card-body">
-                                             <h5 class="card-title">${obj.product_name}</h5>
-                                             <h5 class="card-title card-category">${obj.category}</h5>
-                                             <p class="card-text">initial price: ${obj.initial_price}</p>
-                                             <p class="card-text">discount: ${obj.percent}</p>
-                                             <p class="card-text">final price: ${obj.final_price}</p>
-                                             <p class="card-text">stock: ${obj.stock}</p>
-                                             <p class="card-text">description: ${obj.description}</p>
-                                             <button onclick="AddToCart(${obj.id})" class="btn btn-primary">
-                                                add to cart
-                                             </button>
-                                         </div>
+                                         <form method="POST" action="/order/add_to_cart/">
+                                             <img class="card-img-top" src=${obj.photo} alt="Card image cap">
+                                             <div class="card-body">
+                                                 <h5 class="card-title">${obj.product_name}</h5>
+                                                 <h5 class="card-title card-category">${obj.category}</h5>
+                                                 <p class="card-text">initial price: ${obj.initial_price}</p>
+                                                 <p class="card-text">discount: ${obj.percent}</p>
+                                                 <p class="card-text">final price: ${obj.final_price}</p>
+                                                 <p class="card-text">stock: ${obj.stock}</p>
+                                                 <p class="card-text">description: ${obj.description}</p>
+                                                 <input value="${obj.id}">
+                                                     <button type="submit" class="btn btn-primary">
+                                                        add to cart
+                                                     </button>
+                                             </div>
+                                         </form>
                                     </div>`
                         $('.product-container').children().children().append(card)
                     }
@@ -56,18 +41,23 @@ $.ajax({
 
         for (const obj of data_without_category) {
             let card = `<div class="card col-xl-3 col-lg-4 col-md-6 col-sm-12">
-                     <img class="card-img-top" src=${obj.photo} alt="Card image cap">
-                     <div class="card-body">
-                         <h5 class="card-title">${obj.product_name}</h5>
-                         <h5 class="card-title card-category">${obj.category}</h5>
-                         <p class="card-text">initial price: ${obj.initial_price}</p>
-                         <p class="card-text">discount: ${obj.percent}</p>
-                         <p class="card-text">final price: ${obj.final_price}</p>
-                         <p class="card-text">stock: ${obj.stock}</p>
-                         <p class="card-text">description: ${obj.description}</p>
-                         <button onclick="AddToCart(${obj.id})" class="btn btn-primary">add to cart</button>
-                     </div>
-                </div>`
+                         <form method="POST" action="/order/add_to_cart/">
+                         <img class="card-img-top" src=${obj.photo} alt="Card image cap">
+                         <div class="card-body">
+                             <h5 class="card-title">${obj.product_name}</h5>
+                             <h5 class="card-title card-category">${obj.category}</h5>
+                             <p class="card-text">initial price: ${obj.initial_price}</p>
+                             <p class="card-text">discount: ${obj.percent}</p>
+                             <p class="card-text">final price: ${obj.final_price}</p>
+                             <p class="card-text">stock: ${obj.stock}</p>
+                             <p class="card-text">description: ${obj.description}</p>
+                             <input value="${obj.id}" name="id" hidden>
+                            <button type="submit" class="btn btn-primary">
+                                                        add to cart
+                                                     </button>
+                         </div>
+                        </form>
+                        </div>`
             $('.product-container').children().children().append(card)
         }
     },

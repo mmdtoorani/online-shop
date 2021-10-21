@@ -2,10 +2,10 @@ from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from rest_framework.response import Response
 
 from customer.forms import EditProfileForm
 from customer.models import Customer
+from product.models import Product
 
 
 def login(request):
@@ -25,6 +25,7 @@ def profile(request):
         this_user = Customer.objects.get(id=request.user.id)
         phone = this_user.phone
         address = this_user.address
+        # print(this_user, phone, address)
         return render(request, 'customer/profile.html', {
             'request': request,
             'phone': phone,
@@ -48,15 +49,6 @@ def profile_edit(request):
         'form': form
     }
     return render(request, 'customer/profile_edit.html', context)
-
-
-def cart(request):
-    if request.method == 'POST':
-        res = {'success': 'true'}
-        print(request.POST)
-        return Response(res)
-
-    return render(request, 'customer/cart.html', {'request': request})
 
 
 def auth_logout(request):
