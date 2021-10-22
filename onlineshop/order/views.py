@@ -4,7 +4,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib import messages
 
 from customer.models import Customer
-from order.models import Order
+from order.models import Order, OrderItem
 from product.models import Product
 
 
@@ -64,13 +64,31 @@ def delete_from_cart(request, product_id):
 
 def checkout(request):
     if request.user.is_authenticated:
-        # .
-        # .
-        # .
-        # order = Order.objects.create(user=request.user,
-        #                              address=Customer.address,
-        #                              total_price=total_price,
-        #                              )
+        order_item_list = list()
+        total_price = 0
+        the_cart = request.session.get('cart')  # {product_id: quantity, ...}
+
+        for product_id in the_cart:
+            selected_product = Product.objects.filter(pk=product_id).first()  # number of existing product in shop
+            quantity = the_cart[product_id]  # number of product that user wants to buy
+
+            if selected_product.stock >= int(quantity):
+                Product.objects.filter(pk=product_id).update(stock=selected_product.stock - int(quantity))
+
+            order_item = OrderItem.objects.create(product=selected_product, quantity=quantity)
+            order_item_list.append(order_item)
+            total_price += selected_product.generate_final_price * int(quantity)  # calculate total price
+
+        customer = Customer.objects.get(id=request.user.id)
+        print(customer)
+        order = Order.objects.create(
+            customer=customer,
+            total_price=total_price,
+        )
+
+        order.order_item.add(*order_item_list)
+        request.session.clear()
+
         messages.success(request, 'Your order Recorded successfully')
         return render(request, "order/checkout_done.html", {'request': request})
     else:
