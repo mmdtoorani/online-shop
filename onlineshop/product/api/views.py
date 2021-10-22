@@ -23,21 +23,21 @@ class ProductAPIView(APIView):
         return Response(serializer.data)
 
 
-class CategoryViewSet(viewsets.ViewSet):
-    def category_list(self, request):
-        queryset = get_list_or_404(Category)
+class CategoryAPIView(APIView):
+    def get(self, request):
+        queryset = Category.objects.all()
         serializer = CategoryListSerializer(queryset, context={'request': request}, many=True)
         return Response(serializer.data)
 
-
-class ProductByPkAPIView(APIView):
-    serializer = ProductsListSerializer
-
-    def get(self, request, pk=None):
-        if pk:
-            queryset = get_object_or_404(Product, id=pk)
-        else:
-            queryset = Product.objects.all()
-
-        serializer = ProductsListSerializer(queryset, context={'request': request})
-        return Response(serializer.data)
+#
+# class ProductByPkAPIView(APIView):
+#     serializer = ProductsListSerializer
+#
+#     def get(self, request, pk=None):
+#         if pk:
+#             queryset = get_object_or_404(Product, id=pk)
+#         else:
+#             queryset = Product.objects.all()
+#
+#         serializer = ProductsListSerializer(queryset, context={'request': request})
+#         return Response(serializer.data)
