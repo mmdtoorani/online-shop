@@ -68,28 +68,34 @@ def checkout(request):
         total_price = 0
         the_cart = request.session.get('cart')  # {product_id: quantity, ...}
 
-        for product_id in the_cart:
-            selected_product = Product.objects.filter(pk=product_id).first()  # number of existing product in shop
-            quantity = the_cart[product_id]  # number of product that user wants to buy
+        if the_cart:
+            for product_id in the_cart:
+                selected_product = Product.objects.filter(pk=product_id).first()  # number of existing product in shop
+                quantity = the_cart[product_id]  # number of product that user wants to buy
 
-            if selected_product.stock >= int(quantity):
-                Product.objects.filter(pk=product_id).update(stock=selected_product.stock - int(quantity))
+                if selected_product.stock >= int(quantity):
+                    Product.objects.filter(pk=product_id).update(stock=selected_product.stock - int(quantity))
 
-            order_item = OrderItem.objects.create(product=selected_product, quantity=quantity)
-            order_item_list.append(order_item)
-            total_price += selected_product.generate_final_price * int(quantity)  # calculate total price
+                order_item = OrderItem.objects.create(product=selected_product, quantity=quantity)
+                order_item_list.append(order_item)
+                total_price += selected_product.generate_final_price * int(quantity)  # calculate total price
 
-        customer = Customer.objects.get(id=request.user.id)
-        print(customer)
-        order = Order.objects.create(
-            customer=customer,
-            total_price=total_price,
-        )
+            customer = Customer.objects.get(id=request.user.id)
+            print(customer)
+            order = Order.objects.create(
+                customer=customer,
+                total_price=total_price,
+            )
 
-        order.order_item.add(*order_item_list)
-        request.session.clear()
+            order.order_item.add(*order_item_list)
+            request.session.clear()
 
-        messages.success(request, 'Your order Recorded successfully')
-        return render(request, "order/checkout_done.html", {'request': request})
+            messages.success(request, 'Your order Recorded successfully')
+            return render(request, "order/checkout_done.html", {'request': request})
+
+        else:
+            messages.error(request, "you don't have any orders yet!")
+            return render(request, "order/checkout_done.html", {'request': request})
+
     else:
         return render(request, "customer/login.html", {'request': request})
