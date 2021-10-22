@@ -38,7 +38,7 @@
 
                     <td id="price" value="{{ product.initial_price }}">{{ product.initial_price }}</td>
                     <td>
-                        <input name="qty" id="qty" type="number" value="1">
+                        <input oninput="CalculatePrice()" name="qty" id="qty" type="number" value="1">
                     </td>
                 </tr>
                 </tbody>
@@ -56,20 +56,17 @@
 
 {% block js %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-{#    <script>#}
-        {#function CalculatePrice() {#}
-        {#    let qty = $('#qty').val()#}
-        {#    if (qty > {{ product.stock }}) {#}
-        {#        alert('This amount is more than inventory!')#}
-        {#        qty = 1#}
-        {#    }#}
-        {#    let total = qty * {{ product.initial_price }}#}
-        {#        $('#price').empty().append(total)#}
-        {#    window.sessionStorage.setItem('product_id', '{{ product.id }}')#}
-        {#    window.sessionStorage.setItem('product_name', '{{ product.product_name }}')#}
-        {#    window.sessionStorage.setItem('product_quantity', `${qty}`)#}
-        {#    window.sessionStorage.setItem('final_price', `${$('#price').html()}`)#}
+    <script>
+        function CalculatePrice() {
+            console.log({{ product.initial_price }})
+            let qty = $('#qty').val()
+            if (qty > {{ product.stock }}) {
+                alert('This amount is more than inventory!')
+                qty = 1
+            }
+            let total = qty * {{ product.initial_price }}
+                $('#price').empty().append(total)
         }
 
-{#    </script>#}
+    </script>
 {% endblock %}
