@@ -8,14 +8,17 @@ from customer.models import Customer
 from product.models import Product
 
 
+# just render the related page
 def login(request):
     return render(request, 'customer/login.html', {'request': request})
 
 
+# just render the related page
 def signup(request):
     return render(request, 'customer/signup.html', {'request': request})
 
 
+# just render the related page
 def forgetpassword(request):
     return render(request, 'customer/forget_password.html', {'request': request})
 

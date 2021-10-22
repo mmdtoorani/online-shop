@@ -36,11 +36,13 @@
                     <td>{{ product.stock }}</td>
                     <td id="price"
                         value="{% widthratio qty 1 product.initial_price %}">{% widthratio qty 1 product.initial_price %}</td>
-                    <td id="qty" value="{{ qty }}">{{ qty }}</td>
-                    <td><a class="btn btn-danger" href="{% url 'order:delete_from_cart' product.id %}">remove</a></td>
+                    <td id="qty" value="{{ qty }}">
+                        {{ qty }}
+                        <a class="btn btn-danger" href="{% url 'order:delete_from_cart' product.id %}">remove</a>
+                    </td>
+
                 </tr>
                 </tbody>
-
             {% endfor %}
         </table>
         <div>
