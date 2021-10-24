@@ -25,19 +25,7 @@ class ProductAPIView(APIView):
 
 class CategoryAPIView(APIView):
     def get(self, request):
+        print('resid be view')
         queryset = Category.objects.all()
         serializer = CategoryListSerializer(queryset, context={'request': request}, many=True)
         return Response(serializer.data)
-
-#
-# class ProductByPkAPIView(APIView):
-#     serializer = ProductsListSerializer
-#
-#     def get(self, request, pk=None):
-#         if pk:
-#             queryset = get_object_or_404(Product, id=pk)
-#         else:
-#             queryset = Product.objects.all()
-#
-#         serializer = ProductsListSerializer(queryset, context={'request': request})
-#         return Response(serializer.data)
