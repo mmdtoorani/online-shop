@@ -8,7 +8,7 @@ $.ajax({
             console.log(this.value)
             $.ajax({
                 method: "GET",
-                url: `http://127.0.0.1:8000/api/products/${this.value}/`,
+                url: `/api/products/${this.value}/`,
 
                 success: function (data_with_category) {
                     $('.product-container').children().children().empty()
