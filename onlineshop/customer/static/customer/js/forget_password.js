@@ -2,7 +2,7 @@ $('#button').on('click', function () {
     console.log('button clicked');
     $.ajax({
         type: "POST",
-        url: "http://127.0.0.1:8000/api/customers/forgetpassword/",
+        url: "/api/customers/forgetpassword/",
         data: $('#form').serialize(),
 
         success: function (data) {
