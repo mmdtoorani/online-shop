@@ -19,6 +19,12 @@ $ . venv/bin/activate
 > venv\Scripts\activate.bat
 ```
 
+##### Install the requirements :
+```bash
+$ cd online-shop
+$ pip3 install -r requirements.txt
+```
+
 #### In settings.py, set up the database :
 for this project i used postgress, you can see the following settings below :
 ```
