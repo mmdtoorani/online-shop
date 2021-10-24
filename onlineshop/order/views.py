@@ -88,7 +88,7 @@ def checkout(request):
             )
 
             order.order_item.add(*order_item_list)
-            request.session.clear()
+            request.session.pop('cart')
 
             messages.success(request, 'Your order Recorded successfully')
             return render(request, "order/checkout_done.html", {'request': request})
