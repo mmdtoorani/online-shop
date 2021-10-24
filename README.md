@@ -2,6 +2,8 @@
 
 ## How run the project?
 
+First of all, you must have python and postgresql installed
+and to continue ...
 
 ##### Clone the repository :
 ```bash
