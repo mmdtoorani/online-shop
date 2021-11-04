@@ -17,7 +17,7 @@ class ProductAPIView(APIView):
         if category:
             queryset = get_list_or_404(Product, category__category_name=category)
         else:
-            queryset = Product.objects.all()
+            queryset = self.get_queryset()
 
         serializer = ProductsListSerializer(queryset, context={'request': request}, many=True)
         return Response(serializer.data)
