@@ -48,11 +48,6 @@ python manage.py makemigrations
 python manage.py migrate
 ```
 
-##### Install the requirements :
-```bash
-$ pip3 install -r requirements.txt
-```
-
 #####  Run the development server :
 ```bash
 python3 manage.py runserver
