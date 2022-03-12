@@ -23,7 +23,6 @@ def forgetpassword(request):
     return render(request, 'customer/forget_password.html', {'request': request})
 
 
-
 @login_required
 def profile(request):
     if request.method == 'GET':
