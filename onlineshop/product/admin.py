@@ -1,5 +1,5 @@
 from django.contrib import admin
-from product.models import Product, Category
+from .models import Product, Category
 
 
 @admin.register(Product)
@@ -8,6 +8,12 @@ class ProductAdmin(admin.ModelAdmin):
     # list_editable = ['stock', ]
     pass
 
+
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    pass
+    list_display = ['category_name', 'parent_category', ]
+
+
+# @admin.register(SubCategory)
+# class SubCategoryAdmin(admin.ModelAdmin):
+#     pass
